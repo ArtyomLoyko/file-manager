@@ -3,6 +3,8 @@ import {cd} from './cd.js'
 import {ls} from './ls.js'
 import {cat} from './cat.js'
 import {add} from './add.js'
+import {rn} from './rn.js'
+import {cp} from './cp.js'
 import {hash} from './hash.js'
 import {os} from './os.js'
 import {compress} from './compress.js'
@@ -14,6 +16,8 @@ export const COMMANDS = {
   ls,
   cat,
   add,
+  rn,
+  cp,
   os,
   hash,
   compress,
