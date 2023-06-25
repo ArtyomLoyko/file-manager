@@ -1,7 +1,12 @@
 import path from 'path'
+import fs from 'fs/promises'
 
-export const cd = (pathToDirectory, currentPath) => {
-  console.log(path.resolve(currentPath.pathname, pathToDirectory))
-  const newPathname = path.join(currentPath.pathname, pathToDirectory)
-  currentPath.pathname = newPathname
+export const cd = async (pathToDirectory, currentPath) => {
+  try {
+    const newPathname = path.join(currentPath.pathname, pathToDirectory)
+    await fs.access(newPathname)
+    currentPath.pathname = newPathname
+  } catch (err) {
+    throw err
+  }
 }

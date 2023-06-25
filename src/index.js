@@ -14,7 +14,7 @@ console.log(`Welcome to the File Manager, ${username}!`)
 let currentPath = new Path(os.homedir())
 currentPath.log()
 
-rl.on('line', (input) => {
+rl.on('line', async (input) => {
   if (input === '.exit') {
     rl.close()
   }
@@ -24,9 +24,9 @@ rl.on('line', (input) => {
 
   if (commandHandler) {
     try {
-      commandHandler(...restArgs, currentPath)
+      await commandHandler(...restArgs, currentPath)
       currentPath.log()
-    } catch {
+    } catch (err) {
       console.log('Operation failed')
     }
   } else {
