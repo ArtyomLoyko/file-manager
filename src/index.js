@@ -1,6 +1,7 @@
 import * as readline from 'node:readline/promises'
 import os from 'os'
 import { COMMANDS } from './commands/index.js'
+import { Path } from './utils/path.js'
 
 const rl =  readline.createInterface({
   input: process.stdin,
@@ -9,8 +10,9 @@ const rl =  readline.createInterface({
 
 const username = process.argv.find(arg => arg.startsWith('--username')).substring(11)
 console.log(`Welcome to the File Manager, ${username}!`)
-let path = os.homedir()
-console.log(`You are currently in ${path}`)
+
+let currentPath = new Path(os.homedir())
+currentPath.log()
 
 rl.on('line', (input) => {
   if (input === '.exit') {
@@ -22,7 +24,8 @@ rl.on('line', (input) => {
 
   if (commandHandler) {
     try {
-      commandHandler(...restArgs, path)
+      commandHandler(...restArgs, currentPath)
+      currentPath.log()
     } catch {
       console.log('Operation failed')
     }
