@@ -1,4 +1,4 @@
-import * as readline from 'node:readline/promises'
+import readline from 'readline/promises'
 import os from 'os'
 import { COMMANDS } from './commands/index.js'
 import { Path } from './utils/path.js'
