@@ -2,13 +2,14 @@ import readline from 'readline/promises'
 import os from 'os'
 import { COMMANDS } from './commands/index.js'
 import { Path } from './utils/path.js'
+import { getUsername } from './utils/generic.js'
 
 const rl =  readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-}); 
+})
 
-const username = process.argv.find(arg => arg.startsWith('--username')).substring(11)
+const username = getUsername()
 console.log(`Welcome to the File Manager, ${username}!`)
 
 let currentPath = new Path(os.homedir())
@@ -32,9 +33,9 @@ rl.on('line', async (input) => {
   } else {
     console.log('Invalid input')
   }
-}); 
+})
 
 rl.on('close', () => {
   console.log(`Thank you for using File Manager, ${username}, goodbye!`)
-  process.exit(0);
-});
+  process.exit(0)
+})
