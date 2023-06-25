@@ -12,6 +12,6 @@ export class Path {
   }
 
   log() {
-    console.log(`You are currently in ${this._pathname}`)
+    console.log(`\nYou are currently in ${this._pathname}`)
   }
 }
