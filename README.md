@@ -18,11 +18,6 @@ The file manager is able to do the following:
 ```bash
 npm run start -- --username=your_username
 ```
-- After starting the program displays the following text in the console (`Username` is equal to value that was passed on application start in `--username` CLI argument)  
-`Welcome to the File Manager, Username!`  
-- After program work finished (`ctrl + c` pressed or user sent `.exit` command into console) the program displays the following text in the console  
-`Thank you for using File Manager, Username, goodbye!`  
-- Starting working directory is current user's home directory (for example, on Windows it's something like `system_drive/Users/Username`)
 
 List of operations and their syntax:
 - Navigation & working directory (nwd)
