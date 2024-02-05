@@ -8,10 +8,18 @@ export const cp = async (pathToFile, pathToNewDirectory, currentPath) => {
     const destination = path.join(currentPath.pathname, pathToNewDirectory, filename)
 
     const readableStream = fs.createReadStream(source)
-    const writableStream = fs.createWriteStream(destination)
-
-    readableStream.pipe(writableStream)
-    
+    readableStream.on("error", err => {
+      console.log('Operation failed')
+    })
+    readableStream.on('open', async () => {
+      const writableStream = fs.createWriteStream(destination)
+      writableStream.on("error", err => {
+        console.log('Operation failed')
+      })
+      writableStream.on('open', () => {
+        readableStream.pipe(writableStream)
+      })
+    })
   } catch (err) {
     throw err
   }

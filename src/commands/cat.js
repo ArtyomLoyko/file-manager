@@ -1,12 +1,15 @@
 import path from 'path'
-import fs from 'fs/promises'
+import fs from 'fs'
+import { stdout } from 'process'
 
 export const cat = async (pathToFile, currentPath) => {
   try {
     const filePath = path.join(currentPath.pathname, pathToFile)
-    const content = await fs.readFile(filePath, { encoding: 'utf8' })
-
-    console.log(content)
+    const readableStream = fs.createReadStream(filePath)
+    readableStream.on('error', () => {
+      console.log('Operation failed')
+    })
+    readableStream.pipe(stdout)
   } catch (err) {
     throw err
   }
